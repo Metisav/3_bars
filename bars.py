@@ -32,13 +32,13 @@ def get_smallest_bar(data):
 def get_closest_bar(data, longitude, latitude):
     min_distance = 1000000
     json_string = ""
-    r = 6371  # radius of the earth in km
+    earth_radius = 6371  # radius of the earth in km
     for i in data:
         # x = (lon2 - lon1) * cos( 0.5*(lat2+lat1) )
         x = (float(i['Longitude_WGS84']) - longitude) * \
             cos(0.5 * (float(i['Latitude_WGS84']) + latitude))
         y = float(i['Latitude_WGS84']) - latitude
-        d = r * sqrt(x * x + y * y)
+        d = earth_radius * sqrt(x * x + y * y)
         if d < min_distance:
             min_distance = d
             json_string = i
