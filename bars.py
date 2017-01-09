@@ -3,8 +3,8 @@ from math import sqrt, cos
 
 
 def load_data(filepath):
-    data = open(filepath, 'r').read()
-    json_data = json.loads(''.join(data))
+    string_data = open(filepath, 'r').read()
+    json_data = json.loads(''.join(string_data))
     return json_data
 
 
@@ -32,13 +32,13 @@ def get_smallest_bar(data):
 def get_closest_bar(data, longitude, latitude):
     min_distance = 1000000
     json_string = ""
-    R = 6371  # radius of the earth in km
+    r = 6371  # radius of the earth in km
     for i in data:
         # x = (lon2 - lon1) * cos( 0.5*(lat2+lat1) )
         x = (float(i['Longitude_WGS84']) - longitude) * \
             cos(0.5 * (float(i['Latitude_WGS84']) + latitude))
         y = float(i['Latitude_WGS84']) - latitude
-        d = R * sqrt(x * x + y * y)
+        d = r * sqrt(x * x + y * y)
         if d < min_distance:
             min_distance = d
             json_string = i
@@ -46,10 +46,10 @@ def get_closest_bar(data, longitude, latitude):
 
 
 if __name__ == '__main__':
-    data = load_data('c.json')
-    print(' '.join(get_biggest_bar(data))+" самое большое заведение")
-    print(' '.join(get_smallest_bar(data))+" самое маленькое заведение")
+    string_data = load_data('c.json')
+    print(' '.join(get_biggest_bar(string_data))+" самое большое заведение")
+    print(' '.join(get_smallest_bar(string_data))+" самое маленькое заведение")
     latitude = float(input("enter latitude\n"))
     longitude = float(input("enter longitude\n"))
-    print(' '.join(get_closest_bar(data, longitude, latitude)) +
+    print(' '.join(get_closest_bar(string_data, longitude, latitude)) +
           " ближайшее заведение")
