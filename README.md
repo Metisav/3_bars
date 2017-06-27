@@ -7,7 +7,8 @@
 
 Пример запуска скрипта из консоли
 
-'''python3 bars.py data-2897-2016-11-23.json '''
+'''sh
+python3 bars.py data-2897-2016-11-23.json '''
 
 После запуска вы увидите следующие:
 
@@ -19,7 +20,8 @@ enter latitude
 
 Далее чтобы узнать ближайший к нам бар нужно ввести latitude и longitude
 
-'''enter latitude
+'''sh
+enter latitude
 55.33
 enter longitude
 37.44
